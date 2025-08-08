@@ -20,6 +20,7 @@ import Link from "next/link"
 import { ChatWidget } from "@/components/chat-widget"
 import { SimpleChat } from "@/components/simple-chat"
 import { ROICalculator } from "@/components/roi-calculator"
+import FlowiseIntegration from "@/components/flowise-integration"
 
 export default function Home() {
   return (
@@ -402,19 +403,7 @@ export default function Home() {
             Junte-se a centenas de empresas que já estão transformando seus resultados com IA
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 text-lg" asChild>
-              <Link href="/planos">
-                Ver Planos e Preços
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-orange-500 text-orange-600 hover:bg-orange-50 font-semibold px-8 py-4 text-lg" asChild>
-              <Link href="/contato">
-                Falar com Especialista
-              </Link>
-            </Button>
-          </div>
+          <FlowiseIntegration />
         </div>
       </section>
       
