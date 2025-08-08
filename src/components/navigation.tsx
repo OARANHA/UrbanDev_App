@@ -135,9 +135,20 @@ export function Navigation() {
               </Button>
             </div>
           ) : (
-            <Button disabled className="opacity-50 hidden md:block" size="sm">
-              Em Breve
-            </Button>
+            <div className="hidden md:flex items-center space-x-2">
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/login">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sou Cliente
+                </Link>
+              </Button>
+              <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
+                <Link href="/login">
+                  <User className="h-4 w-4 mr-2" />
+                  Cadastre-se
+                </Link>
+              </Button>
+            </div>
           )}
 
           {/* Mobile Navigation */}
@@ -242,9 +253,29 @@ export function Navigation() {
                       </Button>
                     </>
                   ) : (
-                    <Button disabled className="opacity-50 justify-start">
-                      Em Breve
-                    </Button>
+                    <>
+                      <Button 
+                        variant="ghost" 
+                        className="justify-start"
+                        asChild
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Link href="/login">
+                          <LogIn className="h-4 w-4 mr-2" />
+                          Sou Cliente
+                        </Link>
+                      </Button>
+                      <Button 
+                        className="justify-start bg-orange-500 hover:bg-orange-600 text-white"
+                        asChild
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Link href="/login">
+                          <User className="h-4 w-4 mr-2" />
+                          Cadastre-se
+                        </Link>
+                      </Button>
+                    </>
                   )}
                 </div>
               </div>
