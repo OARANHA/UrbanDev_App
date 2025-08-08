@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useAuth } from '@/components/auth-provider'
 import { Navigation } from '@/components/navigation'
+import { Footer } from '@/components/footer'
 import Link from 'next/link'
 import { Sparkles } from 'lucide-react'
 
@@ -30,13 +31,16 @@ export function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'dark bg-gray-950' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen flex flex-col transition-colors duration-300 ${isDark ? 'dark bg-gray-950' : 'bg-gray-50'}`}>
       <Navigation />
       
       {/* Main Content */}
-      <main className="pt-16">
+      <main className="flex-1 pt-16">
         {children}
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

@@ -35,7 +35,7 @@ const navigation = [
   { name: "Agentes de IA", href: "/agentes", icon: Bot },
   { name: "Automação Avançada", href: "/automacao", icon: Zap },
   { name: "Serviços", href: "/servicos", icon: Settings },
-  { name: "Flowise Studio", href: "/flowise", icon: Workflow },
+  { name: "Planos", href: "/planos", icon: Workflow },
   { name: "Contato", href: "/contato", icon: Mail },
 ]
 
