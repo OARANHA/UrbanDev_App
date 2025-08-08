@@ -76,6 +76,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Custom urbanDev colors */
+  --urban-purple: #8B5CF6;
+  --urban-purple-hover: #7C3AED;
+  --urban-purple-light: #EDE9FE;
+  --urban-orange: #FFA500;
+  --urban-orange-hover: #e6940a;
+  --urban-orange-light: #fff3e0;
 }
 
 .dark {
@@ -110,6 +118,14 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  
+  /* Custom urbanDev colors for dark mode */
+  --urban-blue: #4dabf7;
+  --urban-orange: #ff922b;
+  --urban-blue-hover: #339af0;
+  --urban-orange-hover: #fd7e14;
+  --urban-blue-light: #1e3a8a;
+  --urban-orange-light: #7c2d12;
 }
 
 @layer base {
@@ -119,4 +135,53 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom utility classes for urbanDev colors */
+.bg-urban-blue {
+  background-color: var(--urban-blue);
+}
+
+.bg-urban-orange {
+  background-color: var(--urban-orange);
+}
+
+.bg-urban-blue-hover {
+  background-color: var(--urban-blue-hover);
+}
+
+.bg-urban-orange-hover {
+  background-color: var(--urban-orange-hover);
+}
+
+.text-urban-blue {
+  color: var(--urban-blue);
+}
+
+.text-urban-orange {
+  color: var(--urban-orange);
+}
+
+.border-urban-blue {
+  border-color: var(--urban-blue);
+}
+
+.border-urban-orange {
+  border-color: var(--urban-orange);
+}
+
+.hover\:bg-urban-blue-hover:hover {
+  background-color: var(--urban-blue-hover);
+}
+
+.hover\:bg-urban-orange-hover:hover {
+  background-color: var(--urban-orange-hover);
+}
+
+.hover\:text-urban-blue:hover {
+  color: var(--urban-blue);
+}
+
+.hover\:text-urban-orange:hover {
+  color: var(--urban-orange);
 }

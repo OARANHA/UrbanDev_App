@@ -17,7 +17,11 @@ interface AuthUser {
 interface AuthContextType {
   user: AuthUser | null
   loading: boolean
+  error: string | null
   isConfigured: boolean
+  signIn: (email: string, password: string) => Promise<{ error: { message: string } | null }>
+  signInWithGoogle: () => Promise<{ error: { message: string } | null }>
+  signUp: (email: string, password: string) => Promise<{ error: { message: string } | null }>
   signOut: () => Promise<void>
 }
 
@@ -26,6 +30,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [isConfigured, setIsConfigured] = useState(false)
 
   useEffect(() => {
@@ -67,8 +72,55 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await supabase.auth.signOut()
   }
 
+  const signIn = async (email: string, password: string) => {
+    setError(null)
+    const supabase = createClient()
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+    if (error) {
+      setError(error.message)
+      return { error: { message: error.message } }
+    }
+    return { error: null }
+  }
+
+  const signInWithGoogle = async () => {
+    setError(null)
+    const supabase = createClient()
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`,
+      },
+    })
+    if (error) {
+      setError(error.message)
+      return { error: { message: error.message } }
+    }
+    return { error: null }
+  }
+
+  const signUp = async (email: string, password: string) => {
+    setError(null)
+    const supabase = createClient()
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/dashboard`,
+      },
+    })
+    if (error) {
+      setError(error.message)
+      return { error: { message: error.message } }
+    }
+    return { error: null }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, isConfigured, signOut }}>
+    <AuthContext.Provider value={{ user, loading, error, isConfigured, signIn, signInWithGoogle, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   )
