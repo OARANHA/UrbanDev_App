@@ -10,7 +10,6 @@ import {
   Eye, 
   Server, 
   Database,
-  Certificate,
   Award,
   Globe,
   FileText,
@@ -68,7 +67,7 @@ export function CertificationsSecurity({ onDocumentRequest }: CertificationsSecu
       name: "ISO 27001:2022",
       issuer: "International Organization for Standardization",
       description: "Certificação internacional para sistemas de gestão de segurança da informação",
-      icon: <Certificate className="h-6 w-6 text-blue-600" />,
+      icon: <Award className="h-6 w-6 text-blue-600" />,
       date: "2024-01-15",
       status: "active",
       document: "iso-27001-certificate.pdf"
@@ -298,7 +297,7 @@ export function CertificationsSecurity({ onDocumentRequest }: CertificationsSecu
       <Card className="mb-8">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <Certificate className="h-5 w-5" />
+            <Award className="h-5 w-5" />
             <span>Certificações</span>
           </CardTitle>
           <CardDescription>

@@ -1,3 +1,5 @@
+"use client"
+
 import { Layout } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -34,7 +36,7 @@ import {
   Filter,
   Plug,
   BookOpen,
-  Certificate
+  Award
 } from "lucide-react"
 import Link from "next/link"
 
@@ -456,7 +458,7 @@ export default function Servicos() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center space-x-3 mb-4">
-              <Certificate className="h-8 w-8 text-blue-600" />
+              <Award className="h-8 w-8 text-blue-600" />
               <h2 className="text-3xl md:text-4xl font-bold">Certificações e Segurança</h2>
             </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
