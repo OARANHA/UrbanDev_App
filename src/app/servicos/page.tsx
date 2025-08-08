@@ -2,6 +2,11 @@ import { Layout } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ROICalculator } from "@/components/roi-calculator"
+import { PlanComparator } from "@/components/plan-comparator"
+import { IntegrationsSection } from "@/components/integrations-section"
+import { BlogResources } from "@/components/blog-resources"
+import { CertificationsSecurity } from "@/components/certifications-security"
 import { 
   ArrowRight, 
   Bot, 
@@ -24,7 +29,12 @@ import {
   Cpu,
   Wrench,
   Monitor,
-  Palette
+  Palette,
+  Calculator,
+  Filter,
+  Plug,
+  BookOpen,
+  Certificate
 } from "lucide-react"
 import Link from "next/link"
 
@@ -361,6 +371,101 @@ export default function Servicos() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ROI Calculator Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Calculator className="h-8 w-8 text-blue-600" />
+              <h2 className="text-3xl md:text-4xl font-bold">Calculadora de ROI</h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Descubra quanto sua empresa pode economizar com nossos agentes de IA
+            </p>
+          </div>
+          <ROICalculator onPlanRecommendation={(plan) => {
+            // Scroll to plans section or redirect
+            const element = document.getElementById('plan-comparator')
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+            }
+          }} />
+        </div>
+      </section>
+
+      {/* Plan Comparator Section */}
+      <section id="plan-comparator" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Filter className="h-8 w-8 text-orange-600" />
+              <h2 className="text-3xl md:text-4xl font-bold">Comparador de Planos</h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Encontre o plano perfeito para suas necessidades com nossa ferramenta inteligente
+            </p>
+          </div>
+          <PlanComparator onSelectPlan={(planId) => {
+            // Handle plan selection
+            console.log('Selected plan:', planId)
+          }} />
+        </div>
+      </section>
+
+      {/* Integrations Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Plug className="h-8 w-8 text-purple-600" />
+              <h2 className="text-3xl md:text-4xl font-bold">Integrações Poderosas</h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Conecte nossos agentes de IA com suas ferramentas favoritas
+            </p>
+          </div>
+          <IntegrationsSection onIntegrationRequest={(integrationId) => {
+            console.log('Integration requested:', integrationId)
+          }} />
+        </div>
+      </section>
+
+      {/* Blog Resources Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <BookOpen className="h-8 w-8 text-green-600" />
+              <h2 className="text-3xl md:text-4xl font-bold">Recursos e Conhecimento</h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Conteúdo exclusivo gerado por IA para impulsionar seu negócio
+            </p>
+          </div>
+          <BlogResources onPostSelect={(post) => {
+            console.log('Post selected:', post)
+          }} />
+        </div>
+      </section>
+
+      {/* Certifications and Security Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Certificate className="h-8 w-8 text-blue-600" />
+              <h2 className="text-3xl md:text-4xl font-bold">Certificações e Segurança</h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Compromisso com a segurança, conformidade e proteção de seus dados
+            </p>
+          </div>
+          <CertificationsSecurity onDocumentRequest={(documentId) => {
+            console.log('Document requested:', documentId)
+          }} />
         </div>
       </section>
 
