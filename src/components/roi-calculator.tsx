@@ -132,7 +132,10 @@ export function ROICalculator({ onPlanRecommendation }: ROICalculatorProps) {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Calculator className="h-6 w-6 text-blue-600" />
-              <span>Calculadora de ROI</span>
+              <div>
+                <span>Calculadora de ROI</span>
+                <div className="text-sm font-normal text-muted-foreground">(retorno sobre investimentos)</div>
+              </div>
             </CardTitle>
             <CardDescription>
               Preencha os dados abaixo para calcular o retorno sobre investimento com nossos agentes de IA

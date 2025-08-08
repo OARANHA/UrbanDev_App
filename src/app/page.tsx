@@ -19,6 +19,7 @@ import {
 import Link from "next/link"
 import { ChatWidget } from "@/components/chat-widget"
 import { SimpleChat } from "@/components/simple-chat"
+import { ROICalculator } from "@/components/roi-calculator"
 
 export default function Home() {
   return (
@@ -372,6 +373,22 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ROI Calculator Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Calcule Seu Retorno sobre Investimento
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Descubra quanto sua empresa pode economizar com nossos agentes de IA
+            </p>
+          </div>
+          
+          <ROICalculator />
         </div>
       </section>
 
