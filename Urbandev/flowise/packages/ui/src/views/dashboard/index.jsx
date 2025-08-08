@@ -1,12 +1,19 @@
 import React from 'react'
 
-// Enhanced Dashboard
+// Enhanced Dashboard (Simplificado)
 import DashboardEnhanced from './DashboardEnhanced'
 
-// ==============================|| DASHBOARD PAGE ||============================== //
+// Enterprise Dashboard
+import DashboardEnterprise from './DashboardEnterprise'
+
+// Importar utilitário de modo
+import { isEnterpriseMode } from '@/menu-items'
+
+// ==============================|| DYNAMIC DASHBOARD PAGE ||============================== //
 
 const DashboardPage = () => {
-    return <DashboardEnhanced />
+    // Renderizar o dashboard apropriado baseado no modo
+    return isEnterpriseMode ? <DashboardEnterprise /> : <DashboardEnhanced />
 }
 
 export default DashboardPage
