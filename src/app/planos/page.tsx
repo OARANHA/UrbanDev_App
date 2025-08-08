@@ -36,74 +36,106 @@ import Link from "next/link"
 
 const pricingPlans = [
   {
-    id: "starter",
-    name: "Starter",
-    description: "Perfeito para pequenos negócios começando com automação inteligente",
-    price: "R$ 297",
+    id: "iniciante",
+    name: "Iniciante",
+    description: "Perfeito para pequenos negócios começando com IA",
+    price: "R$ 97",
     period: "/mês",
     popular: false,
     color: "from-blue-600 to-blue-700",
     badge: null,
     features: [
-      { icon: Users, title: "1 Agente de IA", description: "Agente especializado à sua escolha" },
-      { icon: MessageSquare, title: "2.000 interações/mês", description: "Ideal para atendimento básico" },
-      { icon: Cpu, title: "GLM-4.5-Flash", description: "Modelo de linguagem avançado" },
-      { icon: Network, title: "3 integrações", description: "WhatsApp, Email, Site" },
-      { icon: BarChart3, title: "Analytics básico", description: "Relatórios simples de desempenho" },
+      { icon: Users, title: "1 Agente de IA básico", description: "Atendimento automatizado" },
+      { icon: MessageSquare, title: "Atendimento até 1.000 clientes/mês", description: "Ideal para pequeno volume" },
+      { icon: Network, title: "Integração com WhatsApp", description: "Conecte seu WhatsApp Business" },
+      { icon: BarChart3, title: "Relatórios básicos", description: "Acompanhe desempenho simples" },
       { icon: Clock, title: "Suporte por email", description: "Resposta em 24h úteis" },
-      { icon: Database, title: "Armazenamento 5GB", description: "Dados e conversas" },
-      { icon: Shield, title: "Segurança básica", description: "Criptografia de dados" }
+      { icon: Zap, title: "Setup em 24h", description: "Configuração rápida" }
     ],
-    cta: "Começar Agora",
+    advancedFeatures: [
+      "Agentes personalizados",
+      "Análise preditiva",
+      "Integração avançada",
+      "Suporte prioritário"
+    ],
+    cta: "Começar Teste Grátis",
     ctaLink: "/contato"
   },
   {
-    id: "professional",
-    name: "Professional",
-    description: "Para negócios em crescimento que precisam de mais potência",
-    price: "R$ 597",
+    id: "profissional",
+    name: "Profissional",
+    description: "Ideal para negócios em crescimento",
+    price: "R$ 297",
     period: "/mês",
     popular: true,
     color: "from-purple-600 to-purple-700",
     badge: { text: "Mais Popular", icon: Zap },
     features: [
-      { icon: Users, title: "3 Agentes de IA", description: "Múltiplos especialistas" },
-      { icon: MessageSquare, title: "10.000 interações/mês", description: "Volume médio de atendimento" },
-      { icon: Cpu, title: "GLM-4.5-Turbo", description: "Modelo premium com raciocínio avançado" },
-      { icon: Network, title: "10 integrações", description: "CRM, ERP, Redes sociais e mais" },
-      { icon: BarChart3, title: "Analytics avançado", description: "Dashboard completo com métricas" },
-      { icon: Headphones, title: "Suporte prioritário", description: "Chat e telefone 8h-18h" },
-      { icon: Database, title: "Armazenamento 50GB", description: "Escalável conforme necessidade" },
-      { icon: Shield, title: "Segurança avançada", description: "2FA e monitoramento 24/7" },
-      { icon: Workflow, title: "Automação de workflows", description: "Fluxos personalizados" },
-      { icon: Target, title: "Segmentação avançada", description: "Personalização por cliente" }
+      { icon: Users, title: "3 Agentes de IA especializados", description: "Múltiplos especialistas" },
+      { icon: MessageSquare, title: "Atendimento até 10.000 clientes/mês", description: "Volume médio escalável" },
+      { icon: Network, title: "Integração com múltiplos canais", description: "WhatsApp, Email, Instagram, Site" },
+      { icon: BarChart3, title: "Análise de dados em tempo real", description: "Dashboard completo" },
+      { icon: Workflow, title: "Automação de processos", description: "Fluxos personalizados" },
+      { icon: BarChart3, title: "Relatórios avançados", description: "Métricas detalhadas" },
+      { icon: Headphones, title: "Suporte 24/7", description: "Atendimento contínuo" },
+      { icon: Zap, title: "Setup em 12h", description: "Configuração expressa" }
     ],
-    cta: "Experimentar Agora",
+    advancedFeatures: [
+      "Agentes totalmente customizados",
+      "API completa",
+      "Consultoria dedicada"
+    ],
+    cta: "Começar Teste Grátis",
+    ctaLink: "/contato"
+  },
+  {
+    id: "empresarial",
+    name: "Empresarial",
+    description: "Para empresas que exigem o melhor",
+    price: "R$ 597",
+    period: "/mês",
+    popular: false,
+    color: "from-orange-600 to-orange-700",
+    badge: null,
+    features: [
+      { icon: Users, title: "5 Agentes de IA avançados", description: "Especialistas premium" },
+      { icon: MessageSquare, title: "Atendimento ilimitado", description: "Sem limites de volume" },
+      { icon: Network, title: "Todas as integrações disponíveis", description: "CRM, ERP, Redes sociais" },
+      { icon: Target, title: "Análise preditiva e ML", description: "Machine Learning avançado" },
+      { icon: Workflow, title: "Automação completa", description: "Processos complexos" },
+      { icon: Database, title: "API REST completa", description: "Integração total" },
+      { icon: BarChart3, title: "Relatórios customizados", description: "Personalizados para seu negócio" },
+      { icon: Headphones, title: "Suporte prioritário 24/7", description: "Atendimento VIP" },
+      { icon: Award, title: "Consultoria mensal", description: "Otimização contínua" },
+      { icon: Zap, title: "Setup em 6h", description: "Configuração ultra-rápida" }
+    ],
+    advancedFeatures: [],
+    cta: "Começar Teste Grátis",
     ctaLink: "/contato"
   },
   {
     id: "enterprise",
     name: "Enterprise",
-    description: "Solução completa para grandes operações e necessidades customizadas",
-    price: "Custom",
+    description: "Soluções sob medida para grandes corporações",
+    price: "Customizado",
     period: "",
     popular: false,
-    color: "from-orange-600 to-orange-700",
+    color: "from-gray-700 to-gray-800",
     badge: { text: "Premium", icon: Crown },
     features: [
-      { icon: Users, title: "Agentes ilimitados", description: "Quantos precisar" },
-      { icon: MessageSquare, title: "Interações ilimitadas", description: "Sem limites de volume" },
-      { icon: Cpu, title: "Modelos customizados", description: "Fine-tuning específico" },
-      { icon: Network, title: "Integrações ilimitadas", description: "APIs e sistemas customizados" },
-      { icon: BarChart3, title: "Analytics empresarial", description: "BI e insights preditivos" },
-      { icon: Headphones, title: "Suporte 24/7 dedicado", description: "Gerente de conta exclusivo" },
-      { icon: Database, title: "Armazenamento ilimitado", description: "Infraestrutura dedicada" },
-      { icon: Shield, title: "Segurança enterprise", description: "SOC 2, ISO 27001" },
-      { icon: Workflow, title: "Workflows complexos", description: "Automação multi-sistemas" },
-      { icon: Scale, title: "Escalabilidade infinita", description: "Cresça sem limites" },
+      { icon: Users, title: "Agentes de IA ilimitados", description: "Quantos precisar" },
+      { icon: Globe, title: "Atendimento multi-idioma", description: "Suporte global" },
+      { icon: Network, title: "Integrações customizadas", description: "Desenvolvidas sob medida" },
+      { icon: Target, title: "Machine Learning avançado", description: "Modelos exclusivos" },
+      { icon: Workflow, title: "Automação empresarial", description: "Escala corporativa" },
+      { icon: Database, title: "API dedicada", description: "Infraestrutura exclusiva" },
       { icon: Lock, title: "SLA garantido", description: "99.9% uptime" },
-      { icon: Award, title: "Consultoria estratégica", description: "Otimização contínua" }
+      { icon: Headphones, title: "Suporte dedicado", description: "Gerente de conta" },
+      { icon: Award, title: "Consultoria semanal", description: "Estratégia personalizada" },
+      { icon: Users, title: "Treinamento da equipe", description: "Capacitação completa" },
+      { icon: Zap, title: "Setup imediato", description: "Implementação expressa" }
     ],
+    advancedFeatures: [],
     cta: "Falar com Especialista",
     ctaLink: "/contato"
   }
@@ -112,51 +144,59 @@ const pricingPlans = [
 const comparisonData = [
   {
     feature: "Agentes de IA",
-    starter: "1 Agente",
-    professional: "3 Agentes",
+    iniciante: "1 Agente básico",
+    profissional: "3 Agentes especializados",
+    empresarial: "5 Agentes avançados",
     enterprise: "Ilimitados"
   },
   {
-    feature: "Interações/mês",
-    starter: "2.000",
-    professional: "10.000",
-    enterprise: "Ilimitadas"
-  },
-  {
-    feature: "Modelo de IA",
-    starter: "GLM-4.5-Flash",
-    professional: "GLM-4.5-Turbo",
-    enterprise: "Customizados"
+    feature: "Atendimento/mês",
+    iniciante: "1.000 clientes",
+    profissional: "10.000 clientes",
+    empresarial: "Ilimitado",
+    enterprise: "Ilimitado"
   },
   {
     feature: "Integrações",
-    starter: "3 básicas",
-    professional: "10 avançadas",
-    enterprise: "Ilimitadas"
+    iniciante: "WhatsApp",
+    profissional: "Múltiplos canais",
+    empresarial: "Todas disponíveis",
+    enterprise: "Customizadas"
   },
   {
-    feature: "Analytics",
-    starter: "Básico",
-    professional: "Avançado",
+    feature: "Análise de Dados",
+    iniciante: "Relatórios básicos",
+    profissional: "Tempo real",
+    empresarial: "Preditiva + ML",
+    enterprise: "ML avançado"
+  },
+  {
+    feature: "Automação",
+    iniciante: "Básica",
+    profissional: "Processos",
+    empresarial: "Completa",
     enterprise: "Empresarial"
   },
   {
     feature: "Suporte",
-    starter: "Email 24h",
-    professional: "Prioritário 8h-18h",
-    enterprise: "24/7 dedicado"
+    iniciante: "Email 24h",
+    profissional: "24/7",
+    empresarial: "Prioritário 24/7",
+    enterprise: "Dedicado"
   },
   {
-    feature: "Segurança",
-    starter: "Criptografia básica",
-    professional: "2FA + Monitoramento",
-    enterprise: "Enterprise + Compliance"
+    feature: "Setup",
+    iniciante: "24h",
+    profissional: "12h",
+    empresarial: "6h",
+    enterprise: "Imediato"
   },
   {
-    feature: "Customização",
-    starter: "Limitada",
-    professional: "Avançada",
-    enterprise: "Total"
+    feature: "Consultoria",
+    iniciante: "Não incluído",
+    profissional: "Dedicada",
+    empresarial: "Mensal",
+    enterprise: "Semanal"
   }
 ]
 
@@ -225,7 +265,7 @@ const technologies = [
 ]
 
 export default function PlanosPage() {
-  const [selectedPlan, setSelectedPlan] = useState("professional")
+  const [selectedPlan, setSelectedPlan] = useState("profissional")
   const [billingCycle, setBillingCycle] = useState("monthly")
 
   return (
@@ -333,7 +373,7 @@ export default function PlanosPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {pricingPlans.map((plan) => (
               <Card 
                 key={plan.id} 
@@ -341,18 +381,19 @@ export default function PlanosPage() {
               >
                 {plan.badge && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <Badge className={`${plan.popular ? 'bg-purple-500' : 'bg-orange-500'} text-white px-4 py-2`}>
+                    <Badge className={`${plan.popular ? 'bg-purple-500' : plan.id === 'enterprise' ? 'bg-gray-600' : 'bg-orange-500'} text-white px-4 py-2`}>
                       <plan.badge.icon className="w-3 h-3 mr-1" />
                       {plan.badge.text}
                     </Badge>
                   </div>
                 )}
                 
-                <CardHeader className="text-center pb-8">
+                <CardHeader className="text-center pb-6">
                   <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${plan.color} flex items-center justify-center mb-4`}>
-                    {plan.id === 'starter' && <Rocket className="h-8 w-8 text-white" />}
-                    {plan.id === 'professional' && <Zap className="h-8 w-8 text-white" />}
-                    {plan.id === 'enterprise' && <Crown className="h-8 w-8 text-white" />}
+                    {plan.id === 'iniciante' && <Rocket className="h-8 w-8 text-white" />}
+                    {plan.id === 'profissional' && <Zap className="h-8 w-8 text-white" />}
+                    {plan.id === 'empresarial' && <Crown className="h-8 w-8 text-white" />}
+                    {plan.id === 'enterprise' && <Sparkles className="h-8 w-8 text-white" />}
                   </div>
                   
                   <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
@@ -378,9 +419,23 @@ export default function PlanosPage() {
                       </div>
                     ))}
                   </div>
+
+                  {plan.advancedFeatures && plan.advancedFeatures.length > 0 && (
+                    <div className="border-t pt-4">
+                      <div className="text-sm font-medium text-muted-foreground mb-2">Também inclui:</div>
+                      <div className="space-y-1">
+                        {plan.advancedFeatures.map((feature, index) => (
+                          <div key={index} className="flex items-center space-x-2">
+                            <CheckCircle className="h-4 w-4 text-blue-500" />
+                            <span className="text-xs text-muted-foreground">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   
                   <Button 
-                    className={`w-full mt-6 ${plan.popular ? 'bg-purple-600 hover:bg-purple-700' : plan.id === 'enterprise' ? 'bg-orange-600 hover:bg-orange-700' : 'bg-blue-600 hover:bg-blue-700'} text-white font-semibold py-3`}
+                    className={`w-full mt-4 ${plan.popular ? 'bg-purple-600 hover:bg-purple-700' : plan.id === 'enterprise' ? 'bg-gray-600 hover:bg-gray-700' : plan.id === 'empresarial' ? 'bg-orange-600 hover:bg-orange-700' : 'bg-blue-600 hover:bg-blue-700'} text-white font-semibold py-3`}
                     asChild
                   >
                     <Link href={plan.ctaLink}>
@@ -407,21 +462,23 @@ export default function PlanosPage() {
             </p>
           </div>
           
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="bg-background rounded-lg shadow-lg overflow-hidden border">
-              <div className="grid grid-cols-4 gap-0">
+              <div className="grid grid-cols-5 gap-0">
                 <div className="p-4 border-b font-semibold">Funcionalidade</div>
-                <div className="p-4 border-b font-semibold text-center text-blue-600">Starter</div>
-                <div className="p-4 border-b font-semibold text-center text-purple-600">Professional</div>
-                <div className="p-4 border-b font-semibold text-center text-orange-600">Enterprise</div>
+                <div className="p-4 border-b font-semibold text-center text-blue-600">Iniciante</div>
+                <div className="p-4 border-b font-semibold text-center text-purple-600">Profissional</div>
+                <div className="p-4 border-b font-semibold text-center text-orange-600">Empresarial</div>
+                <div className="p-4 border-b font-semibold text-center text-gray-600">Enterprise</div>
               </div>
               
               {comparisonData.map((item, index) => (
-                <div key={index} className="grid grid-cols-4 gap-0">
+                <div key={index} className="grid grid-cols-5 gap-0">
                   <div className="p-4 border-r border-b font-medium">{item.feature}</div>
-                  <div className="p-4 border-r border-b text-center text-sm">{item.starter}</div>
-                  <div className="p-4 border-r border-b text-center text-sm font-medium text-purple-600">{item.professional}</div>
-                  <div className="p-4 border-b text-center text-sm font-medium text-orange-600">{item.enterprise}</div>
+                  <div className="p-4 border-r border-b text-center text-sm">{item.iniciante}</div>
+                  <div className="p-4 border-r border-b text-center text-sm font-medium text-purple-600">{item.profissional}</div>
+                  <div className="p-4 border-r border-b text-center text-sm font-medium text-orange-600">{item.empresarial}</div>
+                  <div className="p-4 border-b text-center text-sm font-medium text-gray-600">{item.enterprise}</div>
                 </div>
               ))}
             </div>
