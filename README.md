@@ -100,32 +100,169 @@ src/
 - Node.js 18+ 
 - npm ou yarn
 - Conta Supabase (para autenticação)
+- Docker (opcional, para instalação do Flowise)
+- Git
 
-### Instalação
+### 📦 Instalação Completa (urbanDev + Flowise)
+
+Este projeto consiste em duas aplicações que trabalham juntas:
+
+1. **urbanDev** - Frontend e landing page (porta 3000)
+2. **Flowise** - Plataforma de agentes de IA (porta 3001)
+
+#### Passo 1: Clonar e Configurar o urbanDev
 ```bash
 # Clonar o repositório
 git clone <repository-url>
 cd urbandev
 
-# Instalar dependências
+# Instalar dependências do urbanDev
 npm install
 
 # Configurar variáveis de ambiente
 cp .env.example .env.local
-
-# Iniciar servidor de desenvolvimento
-npm run dev
 ```
 
-### Variáveis de Ambiente
+#### Passo 2: Configurar Variáveis de Ambiente
+Edite o arquivo `.env.local` com suas configurações:
+
 ```env
-# URLs do Flowise
-NEXT_PUBLIC_FLOWISE_URL=http://localhost:3000
-FLOWISE_API_URL=http://localhost:3000/api
+# URLs do Flowise (rodando na porta 3001)
+NEXT_PUBLIC_FLOWISE_URL=http://localhost:3001
+FLOWISE_API_URL=http://localhost:3001/api
 
 # Configuração Supabase
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Configuração do banco de dados (opcional)
+DATABASE_URL="file:./dev.db"
+```
+
+#### Passo 3: Instalar e Configurar o Flowise
+
+**Opção A: Instalação Manual (Recomendada para Desenvolvimento)**
+
+```bash
+# Criar diretório para o Flowise (fora do projeto urbanDev)
+cd ..
+mkdir flowise && cd flowise
+
+# Clonar o repositório do Flowise
+git clone https://github.com/FlowiseAI/Flowise.git .
+
+# Instalar dependências
+npm install
+
+# Configurar variáveis de ambiente do Flowise
+cp .env.example .env
+
+# Editar o arquivo .env para usar a mesma configuração Supabase
+echo "SUPABASE_URL=your_supabase_url" >> .env
+echo "SUPABASE_ANON_KEY=your_supabase_anon_key" >> .env
+echo "PORT=3001" >> .env
+
+# Iniciar o Flowise
+npm start
+```
+
+**Opção B: Instalação com Docker**
+
+```bash
+# Criar diretório para o Flowise
+cd ..
+mkdir flowise && cd flowise
+
+# Criar arquivo docker-compose.yml
+cat > docker-compose.yml << EOF
+version: '3.8'
+services:
+  flowise:
+    image: flowiseai/flowise
+    ports:
+      - "3001:3000"
+    environment:
+      - SUPABASE_URL=your_supabase_url
+      - SUPABASE_ANON_KEY=your_supabase_anon_key
+    volumes:
+      - ./data:/root/.flowise
+    restart: unless-stopped
+EOF
+
+# Iniciar o Flowise com Docker
+docker-compose up -d
+```
+
+#### Passo 4: Iniciar as Aplicações
+
+**Terminal 1: Iniciar o urbanDev**
+```bash
+cd urbandev
+npm run dev
+```
+Acesse: http://localhost:3000
+
+**Terminal 2: Iniciar o Flowise**
+```bash
+cd flowise
+npm start
+```
+Ou se usando Docker:
+```bash
+cd flowise
+docker-compose up -d
+```
+Acesse: http://localhost:3001
+
+#### Passo 5: Configurar o Banco de Dados (Opcional)
+```bash
+# No diretório do urbanDev
+npm run db:push
+
+# Isso criará o banco de dados SQLite com as tabelas necessárias
+```
+
+### 🔧 Configuração de Portas
+
+| Aplicação | Porta Padrão | URL de Acesso |
+|-----------|-------------|----------------|
+| urbanDev  | 3000        | http://localhost:3000 |
+| Flowise   | 3001        | http://localhost:3001 |
+
+### 🧪 Teste de Integração
+
+1. Acesse o urbanDev: http://localhost:3000
+2. Clique em "Sou Cliente" ou "Cadastre-se"
+3. Você será redirecionado para o Flowise: http://localhost:3001
+4. Faça login ou cadastro usando o Supabase
+5. Após autenticação, você terá acesso ao dashboard do Flowise
+
+### 🐛 Solução de Problemas Comuns
+
+**Porta já em uso:**
+```bash
+# Verificar processos na porta 3000
+lsof -ti:3000 | xargs kill -9
+
+# Verificar processos na porta 3001
+lsof -ti:3001 | xargs kill -9
+```
+
+**Problemas com o Flowise:**
+```bash
+# Limpar cache do npm
+cd flowise
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**Problemas com o urbanDev:**
+```bash
+# Limpar cache do Next.js
+cd urbandev
+rm -rf .next
+npm run dev
 ```
 
 ## 🔄 Fluxo de Usuário
@@ -202,6 +339,7 @@ npm run db:push
 ### Frontend (urbanDev)
 ```bash
 # Build da aplicação
+cd urbandev
 npm run build
 
 # Iniciar produção
@@ -209,7 +347,173 @@ npm start
 ```
 
 ### Backend (Flowise)
-O Flowise deve ser implantado separadamente e configurado com as mesmas credenciais Supabase para garantir a integração SSO.
+
+**Opção A: Implantação Manual**
+```bash
+# No diretório do Flowise
+cd flowise
+
+# Build para produção
+npm run build
+
+# Iniciar em produção
+npm start
+```
+
+**Opção B: Implantação com Docker**
+```bash
+# No diretório do Flowise
+cd flowise
+
+# Build e iniciar com Docker
+docker-compose up -d --build
+```
+
+### 🌐 Configuração de Produção
+
+#### Variáveis de Ambiente de Produção
+```env
+# urbanDev .env.production
+NEXT_PUBLIC_FLOWISE_URL=https://seu-dominio-flowise.com
+FLOWISE_API_URL=https://seu-dominio-flowise.com/api
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_production_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_production_anon_key
+```
+
+```env
+# Flowise .env.production
+PORT=3001
+SUPABASE_URL=your_supabase_production_url
+SUPABASE_ANON_KEY=your_supabase_production_anon_key
+DATABASE_URL=your_production_database_url
+```
+
+#### Configuração de Domínios
+1. **urbanDev**: Configure seu domínio principal (ex: urbandev.com)
+2. **Flowise**: Configure um subdomínio (ex: flowise.urbandev.com)
+
+#### Configuração de Proxy (Nginx)
+```nginx
+# urbanDev (porta 80)
+server {
+    listen 80;
+    server_name urbandev.com www.urbandev.com;
+    
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+# Flowise (porta 3001)
+server {
+    listen 80;
+    server_name flowise.urbandev.com;
+    
+    location / {
+        proxy_pass http://localhost:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### 🔄 Process Manager (PM2)
+
+Para manter ambas as aplicações rodando em produção:
+
+```bash
+# Instalar PM2 globalmente
+npm install -g pm2
+
+# Criar arquivo ecosystem.config.js
+cat > ecosystem.config.js << EOF
+module.exports = {
+  apps: [
+    {
+      name: 'urbandev',
+      script: 'npm',
+      args: 'start',
+      cwd: './urbandev',
+      instances: 'max',
+      exec_mode: 'cluster',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3000
+      }
+    },
+    {
+      name: 'flowise',
+      script: 'npm',
+      args: 'start',
+      cwd: './flowise',
+      instances: 'max',
+      exec_mode: 'cluster',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3001
+      }
+    }
+  ]
+};
+EOF
+
+# Iniciar ambas as aplicações com PM2
+pm2 start ecosystem.config.js
+
+# Salvar configuração do PM2
+pm2 save
+
+# Configurar PM2 para iniciar com o sistema
+pm2 startup
+```
+
+### 📊 Monitoramento em Produção
+
+```bash
+# Verificar status das aplicações
+pm2 status
+
+# Verificar logs
+pm2 logs urbandev
+pm2 logs flowise
+
+# Monitorar em tempo real
+pm2 monit
+
+# Reiniciar aplicações
+pm2 restart all
+pm2 restart urbandev
+pm2 restart flowise
+```
+
+### 🔒 Configuração de HTTPS
+
+```bash
+# Instalar Certbot
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+
+# Obter certificados
+sudo certbot --nginx -d urbandev.com -d www.urbandev.com -d flowise.urbandev.com
+
+# Configurar renovação automática
+sudo crontab -e
+# Adicionar linha: 0 12 * * * /usr/bin/certbot renew --quiet
+```
 
 ## 🤝 Contribuição
 
