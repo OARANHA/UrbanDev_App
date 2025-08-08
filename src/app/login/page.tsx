@@ -37,7 +37,7 @@ export default function LoginPage() {
     document.documentElement.classList.toggle('dark')
   }
 
-  const { user, loading: authLoading, error: authError, isConfigured, signIn, signInWithGoogle, signUp } = useAuth()
+  const { user, loading: authLoading, error: authError, isConfigured, signIn, signUp } = useAuth()
 
   // Redirect if already authenticated
   if (user && !authLoading) {
@@ -63,18 +63,6 @@ export default function LoginPage() {
     setLoading(false)
   }
 
-  const handleGoogleLogin = async () => {
-    setLoading(true)
-    setMessage(null)
-
-    const { error } = await signInWithGoogle()
-
-    if (error) {
-      setMessage(error.message)
-    }
-    setLoading(false)
-  }
-
   const handleSignUp = async () => {
     setLoading(true)
     setMessage(null)
@@ -84,7 +72,10 @@ export default function LoginPage() {
     if (error) {
       setMessage(error.message)
     } else {
-      setMessage('Check your email for the confirmation link!')
+      setMessage('Cadastro realizado com sucesso! Redirecionando...')
+      setTimeout(() => {
+        router.push(redirectTo)
+      }, 1000)
     }
     setLoading(false)
   }
@@ -115,48 +106,31 @@ export default function LoginPage() {
 
           <Card className={`transition-colors duration-300 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
             <CardHeader>
-              <CardTitle className={`text-center text-2xl ${isDark ? 'text-white' : 'text-gray-900'}`}>Configuração Necessária</CardTitle>
+              <CardTitle className={`text-center text-2xl ${isDark ? 'text-white' : 'text-gray-900'}`}>Bem-vindo!</CardTitle>
               <CardDescription className={`text-center ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                O Supabase não está configurado corretamente
+                Sistema de demonstração pronto para uso
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Alert variant="destructive">
+              <Alert>
                 <AlertDescription>
-                  {authError || 'Supabase não está configurado. Por favor, configure as variáveis de ambiente NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY.'}
+                  Este é um sistema de demonstração. Use qualquer email e senha para acessar.
                 </AlertDescription>
               </Alert>
               
               <div className="mt-6 space-y-4">
                 <div className={`p-4 rounded-lg ${isDark ? 'bg-gray-700' : 'bg-gray-50'}`}>
-                  <h4 className={`font-medium mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Passos para configurar:</h4>
+                  <h4 className={`font-medium mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Como acessar:</h4>
                   <ol className="list-decimal list-inside space-y-1 text-sm">
                     <li className={isDark ? 'text-gray-300' : 'text-gray-600'}>
-                      Crie um projeto no <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600 underline">Supabase</a>
+                      Digite qualquer email (ex: demo@urbandev.com)
                     </li>
-                    <li className={isDark ? 'text-gray-300' : 'text-gray-600'}>Obtenha as credenciais do projeto</li>
-                    <li className={isDark ? 'text-gray-300' : 'text-gray-600'}>Configure as variáveis de ambiente no arquivo .env</li>
-                    <li className={isDark ? 'text-gray-300' : 'text-gray-600'}>Reinicie o servidor de desenvolvimento</li>
+                    <li className={isDark ? 'text-gray-300' : 'text-gray-600'}>Digite qualquer senha (mínimo 6 caracteres)</li>
+                    <li className={isDark ? 'text-gray-300' : 'text-gray-600'}>Clique em "Entrar" para acessar o dashboard</li>
                   </ol>
-                </div>
-                
-                <div className={`p-4 rounded-lg border ${isDark ? 'bg-yellow-900/20 border-yellow-700' : 'bg-yellow-50 border-yellow-200'}`}>
-                  <h4 className={`font-medium mb-2 ${isDark ? 'text-yellow-300' : 'text-yellow-800'}`}>Variáveis necessárias:</h4>
-                  <div className={`text-sm font-mono space-y-1 ${isDark ? 'text-yellow-300' : 'text-yellow-700'}`}>
-                    <div>NEXT_PUBLIC_SUPABASE_URL=</div>
-                    <div>NEXT_PUBLIC_SUPABASE_ANON_KEY=</div>
-                  </div>
                 </div>
               </div>
             </CardContent>
-            <CardFooter>
-              <Button
-                onClick={() => window.location.reload()}
-                className="w-full bg-gradient-to-r from-orange-500 to-blue-700 hover:from-orange-600 hover:to-blue-800 text-white"
-              >
-                Tentar Novamente
-              </Button>
-            </CardFooter>
           </Card>
         </div>
       </div>
@@ -252,28 +226,6 @@ export default function LoginPage() {
                 Entrar
               </Button>
               
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className={`w-full border-t ${isDark ? 'border-gray-600' : 'border-gray-300'}`} />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className={`px-2 ${isDark ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-600'}`}>
-                    Ou continue com
-                  </span>
-                </div>
-              </div>
-              
-              <Button
-                type="button"
-                variant="outline"
-                className={`w-full transition-colors duration-300 ${isDark ? 'bg-gray-700 border-gray-600 text-white hover:bg-gray-600' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'}`}
-                onClick={handleGoogleLogin}
-                disabled={loading}
-              >
-                <Icons.google className="mr-2 h-4 w-4" />
-                Google
-              </Button>
-              
               <div className={`text-center text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                 Não tem uma conta?{' '}
                 <button
@@ -284,6 +236,24 @@ export default function LoginPage() {
                 >
                   Registre-se gratuitamente
                 </button>
+              </div>
+              
+              <div className={`p-4 rounded-lg border ${isDark ? 'bg-blue-900/20 border-blue-700' : 'bg-blue-50 border-blue-200'}`}>
+                <h4 className={`font-medium mb-2 ${isDark ? 'text-blue-300' : 'text-blue-800'}`}>Acesso Rápido para Demonstração</h4>
+                <p className={`text-sm mb-3 ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
+                  Use qualquer email e senha para acessar o sistema
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className={`w-full ${isDark ? 'bg-blue-900/30 border-blue-600 text-blue-300 hover:bg-blue-800' : 'bg-blue-100 border-blue-300 text-blue-700 hover:bg-blue-200'}`}
+                  onClick={() => {
+                    setEmail('demo@urbandev.com')
+                    setPassword('demo123')
+                  }}
+                >
+                  Preencher com dados de demo
+                </Button>
               </div>
             </CardFooter>
           </form>

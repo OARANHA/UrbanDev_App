@@ -14,7 +14,12 @@ import {
   Workflow,
   Target,
   Lightbulb,
-  Shield
+  Shield,
+  Database,
+  Search,
+  FileText,
+  Globe,
+  AlertCircle
 } from "lucide-react"
 import Link from "next/link"
 import { ChatWidget } from "@/components/chat-widget"
@@ -227,6 +232,130 @@ export default function Home() {
                 </ul>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* RAG Technology Section */}
+      <section className="py-20 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge variant="secondary" className="mb-4 bg-purple-100 text-purple-800 border-purple-200">
+              <Database className="w-4 h-4 mr-2" />
+              Tecnologia Exclusiva
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Por Que Nosso Agente de IA é Diferente?
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Utilizamos tecnologia RAG (Retrieval-Augmented Generation) para fornecer respostas precisas 
+              e contextualizadas baseadas nos seus próprios dados
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-purple-200 dark:border-purple-800">
+              <CardHeader className="text-center">
+                <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Search className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                </div>
+                <CardTitle className="text-xl">🔍 Responde com base nos seus dados</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base leading-relaxed">
+                  Nosso agente utiliza a tecnologia RAG para buscar informações diretamente nos seus 
+                  documentos, banco de dados e registros — garantindo respostas com contexto real 
+                  e relevância para o seu negócio.
+                </CardDescription>
+                <div className="mt-4 space-y-2">
+                  <div className="flex items-center text-sm text-purple-600 dark:text-purple-400">
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Acesso em tempo real aos seus dados
+                  </div>
+                  <div className="flex items-center text-sm text-purple-600 dark:text-purple-400">
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Contextualização automática
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-blue-200 dark:border-blue-800">
+              <CardHeader className="text-center">
+                <div className="bg-blue-100 dark:bg-blue-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Globe className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                </div>
+                <CardTitle className="text-xl">📂 Conecta com suas fontes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base leading-relaxed">
+                  Integramos com PDFs, sites, FAQs, CRMs e sistemas internos. O agente aprende 
+                  com os seus materiais, não apenas com a base geral do ChatGPT, tornando-se 
+                  um especialista no seu negócio.
+                </CardDescription>
+                <div className="mt-4 space-y-2">
+                  <div className="flex items-center text-sm text-blue-600 dark:text-blue-400">
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Múltiplas fontes de dados
+                  </div>
+                  <div className="flex items-center text-sm text-blue-600 dark:text-blue-400">
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Integração contínua
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-green-200 dark:border-green-800">
+              <CardHeader className="text-center">
+                <div className="bg-green-100 dark:bg-green-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <AlertCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+                </div>
+                <CardTitle className="text-xl">🚫 Reduz erros e alucinações</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base leading-relaxed">
+                  Ao usar RAG, o agente responde apenas quando tem dados suficientes — isso reduz 
+                  drasticamente erros e aumenta a confiança do usuário final, fornecendo apenas 
+                  informações verificadas e precisas.
+                </CardDescription>
+                <div className="mt-4 space-y-2">
+                  <div className="flex items-center text-sm text-green-600 dark:text-green-400">
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Respostas verificadas
+                  </div>
+                  <div className="flex items-center text-sm text-green-600 dark:text-green-400">
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Confiança aumentada
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-lg p-8 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold mb-4">A Diferença que o RAG Faz</h3>
+              <p className="text-lg text-muted-foreground mb-6">
+                Enquanto outros agentes de IA dependem apenas de conhecimento geral, nosso sistema 
+                combina o poder dos modelos de linguagem com os seus dados específicos, criando 
+                assistentes verdadeiramente inteligentes e especializados no seu negócio.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-purple-600 mb-2">99%</div>
+                  <div className="text-sm text-muted-foreground">Precisão nas respostas</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">10x</div>
+                  <div className="text-sm text-muted-foreground">Mais relevante que IA genérica</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-600 mb-2">0%</div>
+                  <div className="text-sm text-muted-foreground">Alucinações verificadas</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

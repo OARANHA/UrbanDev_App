@@ -1,37 +1,9 @@
-import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({
-    request,
-  })
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
-          supabaseResponse = NextResponse.next({
-            request,
-          })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          )
-        },
-      },
-    }
-  )
-
-  // Refresh session if expired - required for Server Components
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
+  // Verificar autenticação através de cookies
+  const isAuthenticated = request.cookies.get('isAuthenticated')?.value === 'true'
+  
   // Define protected routes
   const protectedRoutes = ['/dashboard']
   const isProtectedRoute = protectedRoutes.some(route => 
@@ -45,18 +17,18 @@ export async function middleware(request: NextRequest) {
   )
 
   // Redirect unauthenticated users from protected routes to login
-  if (isProtectedRoute && !session) {
+  if (isProtectedRoute && !isAuthenticated) {
     const redirectUrl = new URL('/login', request.url)
     redirectUrl.searchParams.set('redirectTo', request.nextUrl.pathname)
     return NextResponse.redirect(redirectUrl)
   }
 
   // Redirect authenticated users from auth routes to dashboard
-  if (isAuthRoute && session) {
+  if (isAuthRoute && isAuthenticated) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
-  return supabaseResponse
+  return NextResponse.next()
 }
 
 export const config = {

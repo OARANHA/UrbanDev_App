@@ -204,7 +204,7 @@ export default function DashboardPage() {
             </AlertDescription>
           </Alert>
           <div className="mt-4 text-center">
-            <Link href="/login">
+            <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
               <Button className="bg-gradient-to-r from-orange-500 to-blue-700 hover:from-orange-600 hover:to-blue-800 text-white">
                 Ir para Configuração
               </Button>
@@ -220,7 +220,7 @@ export default function DashboardPage() {
       <div className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${isDark ? 'dark bg-gray-950' : 'bg-gray-50'}`}>
         <div className="text-center">
           <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Você precisa estar logado para acessar esta página.</p>
-          <Link href="/login">
+          <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
             <Button
               className="mt-4 bg-gradient-to-r from-orange-500 to-blue-700 hover:from-orange-600 hover:to-blue-800 text-white"
             >

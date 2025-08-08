@@ -121,14 +121,14 @@ export function Navigation() {
             </div>
           ) : isConfigured ? (
             <div className="hidden md:flex items-center space-x-2">
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/login">
+              <Button variant="outline" size="sm" asChild>
+                <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
                   <LogIn className="h-4 w-4 mr-2" />
-                  Login
+                  Já Sou Cliente
                 </Link>
               </Button>
               <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
-                <Link href="/dashboard">
+                <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
                   <User className="h-4 w-4 mr-2" />
                   Área do Cliente
                 </Link>
@@ -137,15 +137,15 @@ export function Navigation() {
           ) : (
             <div className="hidden md:flex items-center space-x-2">
               <Button variant="outline" size="sm" asChild>
-                <Link href="/login">
+                <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
                   <LogIn className="h-4 w-4 mr-2" />
-                  Sou Cliente
+                  Já Sou Cliente
                 </Link>
               </Button>
               <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
-                <Link href="/login">
+                <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
                   <User className="h-4 w-4 mr-2" />
-                  Cadastre-se
+                  Área do Cliente
                 </Link>
               </Button>
             </div>
@@ -260,9 +260,9 @@ export function Navigation() {
                         asChild
                         onClick={() => setIsOpen(false)}
                       >
-                        <Link href="/login">
+                        <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
                           <LogIn className="h-4 w-4 mr-2" />
-                          Sou Cliente
+                          Já Sou Cliente
                         </Link>
                       </Button>
                       <Button 
@@ -270,9 +270,9 @@ export function Navigation() {
                         asChild
                         onClick={() => setIsOpen(false)}
                       >
-                        <Link href="/login">
+                        <Link href="http://localhost:3001/login" target="_blank" rel="noopener noreferrer">
                           <User className="h-4 w-4 mr-2" />
-                          Cadastre-se
+                          Área do Cliente
                         </Link>
                       </Button>
                     </>
